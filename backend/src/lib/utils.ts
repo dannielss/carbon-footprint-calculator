@@ -1,4 +1,4 @@
-import { KG_TO_LBS, UNIT_CONVERSIONS } from "../constants";
+import { KG_TO_LBS, UNIT_CONVERSIONS } from "@/constants";
 
 export const toKgFromLbs = (valueLbs: number): number => {
   return valueLbs * UNIT_CONVERSIONS.POUNDS_TO_KG;

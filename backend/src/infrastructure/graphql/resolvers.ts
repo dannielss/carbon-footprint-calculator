@@ -1,7 +1,7 @@
 import {
   CalculateCarbonFootprint,
   CalculateCarbonFootprintInput,
-} from "../../usecases";
+} from "src/usecases";
 
 const calculateCarbonFootprintUseCase = new CalculateCarbonFootprint();
 

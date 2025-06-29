@@ -2,13 +2,13 @@ import {
   HousingInput,
   TravelInput,
   CarbonEmissionResult,
-} from "../domain/models";
+} from "@/domain/models";
 import {
   HOUSING_FACTORS,
   TRAVEL_FACTORS,
   US_AVERAGE_PER_PERSON,
   FLYING_RADIATIVE_FORCING,
-} from "../constants";
+} from "@/constants";
 
 import {
   toKgFromLbs,
@@ -16,9 +16,9 @@ import {
   toKmFromMiles,
   toLbsRounded,
   safeValue,
-} from "../lib/utils";
-import { CalculateCarbonFootprintUseCase } from "../domain/usecases";
-import { TravelMode } from "../types";
+} from "@/lib/utils";
+import { CalculateCarbonFootprintUseCase } from "@/domain/usecases";
+import { TravelMode } from "@/types";
 
 export interface CalculateCarbonFootprintInput {
   housing: HousingInput;
@@ -100,8 +100,6 @@ export class CalculateCarbonFootprint
       if (!safeValue(milesPerMonth)) continue;
 
       const key = inputProp.replace(this.MILES_SUFFIX, "") as TravelMode;
-
-      if (!(key in this.travelFactors)) continue;
 
       let emission =
         toKmFromMiles(safeValue(milesPerMonth)) * this.travelFactors[key];
