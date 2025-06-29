@@ -1,0 +1,34 @@
+type Query {
+  calculateCarbonFootprint(
+    housing: HousingInput!
+    travel: TravelInput
+  ): CarbonEmissionResult!
+}
+
+input HousingInput {
+  zipCode: String!
+  householdSize: Int!
+
+  electricityKWhPerMonth: Float
+  naturalGasThermsPerMonth: Float
+  fuelOilGallonsPerMonth: Float
+  lpgGallonsPerMonth: Float
+  wasteLbsPerMonth: Float
+  waterGallonsPerMonth: Float
+}
+
+input TravelInput {
+  vehicleMilesPerMonth: Float
+  busMilesPerMonth: Float
+  metroMilesPerMonth: Float
+  taxiMilesPerMonth: Float
+  railMilesPerMonth: Float
+  flyingMilesPerMonth: Float
+}
+
+type CarbonEmissionResult {
+  housingEmissionsLbsCO2ePerYear: Float!
+  travelEmissionsLbsCO2ePerYear: Float!
+  totalEmissionsLbsCO2ePerYear: Float!
+  usAverageHouseholdLbsCO2ePerYear: Float!
+}
