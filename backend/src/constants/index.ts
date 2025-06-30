@@ -6,7 +6,7 @@ export const HOUSING_FACTORS = {
   lpg: 3.19, // kg CO2e per litre
   waste: 0.43, // kg CO2e per kg
   water: 0.000298, // kg CO2e per litr
-  electricity: 0.453, // kg CO2e per kWh
+  electricity: 0.453, // kg CO2e per kWh (US Avg)
 };
 
 export const TRAVEL_FACTORS: Record<TravelMode, number> = {
