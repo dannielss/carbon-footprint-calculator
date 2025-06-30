@@ -1,2 +1,2 @@
-export { default as FirstStep } from "./firstStep";
-export { default as SecondStep } from "./secondStep";
+export { default as FirstStep } from "./first-step";
+export { default as SecondStep } from "./second-step";

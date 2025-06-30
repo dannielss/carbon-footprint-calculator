@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import type { FormData } from "@/types/formData";
+import type { FormData } from "@/types/form-data";
 
 interface FirstStepProps {
   handleBasicInfoSubmit(e: React.FormEvent): void;
@@ -55,11 +55,12 @@ const FirstStep: React.FC<FirstStepProps> = ({
                     id="household-size"
                     type="number"
                     min="1"
+                    data-testid="household-size"
                     value={formData.householdSize}
                     onChange={(e) =>
                       setFormData((prev) => ({
                         ...prev,
-                        householdSize: Number.parseInt(e.target.value) || 1,
+                        householdSize: Number.parseInt(e.target.value),
                       }))
                     }
                     className="bg-white"
@@ -84,6 +85,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
                 <Button
                   type="submit"
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-2"
+                  disabled={!formData.householdSize || !formData.zipCode}
                 >
                   Get Started
                 </Button>

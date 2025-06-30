@@ -1,4 +1,4 @@
-import type { EmissionsSummary } from "@/types/emissionSummary";
+import type { EmissionsSummary } from "@/types/emission-summary";
 
 const useSummary = (data: EmissionsSummary | undefined) => {
   const total =

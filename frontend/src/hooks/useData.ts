@@ -1,10 +1,10 @@
-import type { EmissionsSummary } from "@/types/emissionSummary";
-import type { FormData } from "@/types/formData";
+import type { EmissionsSummary } from "@/types/emission-summary";
+import type { FormData } from "@/types/form-data";
 import { gql, useLazyQuery } from "@apollo/client";
 import debounce from "lodash.debounce";
 import { useCallback, useEffect } from "react";
 
-const CALCULATE_CARBON_FOOTPRINT = gql`
+export const CALCULATE_CARBON_FOOTPRINT = gql`
   query CalculateCarbonFootprint(
     $housing: HousingInput!
     $travel: TravelInput

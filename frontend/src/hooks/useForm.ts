@@ -1,5 +1,5 @@
 import { DEFAULT_FORM } from "@/constants";
-import type { FormData } from "@/types/formData";
+import type { FormData } from "@/types/form-data";
 import { useState } from "react";
 
 const useForm = () => {

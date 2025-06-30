@@ -9,10 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import type { FormData } from "@/types/formData";
+import type { FormData } from "@/types/form-data";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import type { EmissionsSummary } from "@/types/emissionSummary";
+import type { EmissionsSummary } from "@/types/emission-summary";
 import { useSummary } from "@/hooks";
 
 interface SecondStepProps {
@@ -73,7 +73,11 @@ const SecondStep: React.FC<SecondStepProps> = ({
                   <Home className="w-4 h-4" />
                   Housing
                 </TabsTrigger>
-                <TabsTrigger value="travel" className="flex items-center gap-2">
+                <TabsTrigger
+                  value="travel"
+                  className="flex items-center gap-2"
+                  data-testid="travel"
+                >
                   <Car className="w-4 h-4" />
                   Travel
                 </TabsTrigger>
