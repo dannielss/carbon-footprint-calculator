@@ -1,11 +1,12 @@
-import { CalculateCarbonFootprint } from "@/usecases";
+import { useCases } from "@/usecases";
 import { HousingInput, TravelInput } from "@/domain/models";
+import { ICalculateCarbonFootprintUseCase } from "@/domain/usecases/CalculateCarbonFootprintUseCase";
 
 describe("CalculateCarbonFootprint Use Case", () => {
-  let useCase: CalculateCarbonFootprint;
+  let useCase: ICalculateCarbonFootprintUseCase;
 
   beforeEach(() => {
-    useCase = new CalculateCarbonFootprint();
+    useCase = useCases.calculateCarbonFootprint;
   });
 
   it("should calculates emissions for full housing and travel inputs", async () => {
