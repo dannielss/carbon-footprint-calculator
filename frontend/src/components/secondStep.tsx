@@ -12,20 +12,30 @@ import { Input } from "@/components/ui/input";
 import type { FormData } from "@/types/formData";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import type { EmissionsSummary } from "@/types/emissionSummary";
+import { useSummary } from "@/hooks";
 
 interface SecondStepProps {
   formData: FormData;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  updateHousingData: (field: keyof FormData["housing"], value: number) => void;
-  updateTravelData: (field: keyof FormData["travel"], value: number) => void;
+  setStart: React.Dispatch<React.SetStateAction<boolean>>;
+  updateHousingData: (field: keyof FormData["housing"], value: string) => void;
+  updateTravelData: (field: keyof FormData["travel"], value: string) => void;
+  data: EmissionsSummary | undefined;
+  handleClearForm: VoidFunction;
 }
 
 const SecondStep: React.FC<SecondStepProps> = ({
   formData,
   setStep,
+  setStart,
   updateHousingData,
   updateTravelData,
+  data,
+  handleClearForm,
 }: SecondStepProps) => {
+  const { comparisonColor, comparisonLabel } = useSummary(data);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-blue-700 text-white p-4">
@@ -39,7 +49,11 @@ const SecondStep: React.FC<SecondStepProps> = ({
           </div>
           <Button
             variant="outline"
-            onClick={() => setStep(1)}
+            onClick={() => {
+              setStep(1);
+              setStart(false);
+              handleClearForm();
+            }}
             className="text-blue-700 border-white hover:bg-blue-50"
           >
             Back to Start
@@ -81,14 +95,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         </Label>
                         <Input
                           id="electricity"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.housing.electricityKWhPerMonth}
                           onChange={(e) =>
                             updateHousingData(
                               "electricityKWhPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -99,14 +113,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         </Label>
                         <Input
                           id="fuel-oil"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.housing.fuelOilGallonsPerMonth}
                           onChange={(e) =>
                             updateHousingData(
                               "fuelOilGallonsPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -115,14 +129,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="lpg">LPG (gallons per month)</Label>
                         <Input
                           id="lpg"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.housing.lpgGallonsPerMonth}
                           onChange={(e) =>
                             updateHousingData(
                               "lpgGallonsPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -133,14 +147,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         </Label>
                         <Input
                           id="natural-gas"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.housing.naturalGasThermsPerMonth}
                           onChange={(e) =>
                             updateHousingData(
                               "naturalGasThermsPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -149,14 +163,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="waste">Waste (lbs per month)</Label>
                         <Input
                           id="waste"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.housing.wasteLbsPerMonth}
                           onChange={(e) =>
                             updateHousingData(
                               "wasteLbsPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -165,14 +179,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="water">Water (gallons per month)</Label>
                         <Input
                           id="water"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.housing.waterGallonsPerMonth}
                           onChange={(e) =>
                             updateHousingData(
                               "waterGallonsPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -197,15 +211,12 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="bus">Bus (miles per month)</Label>
                         <Input
                           id="bus"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.travel.busMilesPerMonth}
                           onChange={(e) =>
-                            updateTravelData(
-                              "busMilesPerMonth",
-                              Number.parseFloat(e.target.value) || 0
-                            )
+                            updateTravelData("busMilesPerMonth", e.target.value)
                           }
                         />
                       </div>
@@ -213,14 +224,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="flying">Flying (miles per month)</Label>
                         <Input
                           id="flying"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.travel.flyingMilesPerMonth}
                           onChange={(e) =>
                             updateTravelData(
                               "flyingMilesPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -229,14 +240,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="metro">Metro (miles per month)</Label>
                         <Input
                           id="metro"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.travel.metroMilesPerMonth}
                           onChange={(e) =>
                             updateTravelData(
                               "metroMilesPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -245,14 +256,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="rail">Rail (miles per month)</Label>
                         <Input
                           id="rail"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.travel.railMilesPerMonth}
                           onChange={(e) =>
                             updateTravelData(
                               "railMilesPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -261,14 +272,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         <Label htmlFor="taxi">Taxi (miles per month)</Label>
                         <Input
                           id="taxi"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.travel.taxiMilesPerMonth}
                           onChange={(e) =>
                             updateTravelData(
                               "taxiMilesPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -279,14 +290,14 @@ const SecondStep: React.FC<SecondStepProps> = ({
                         </Label>
                         <Input
                           id="vehicle"
-                          type="number"
+                          type="string"
                           min="0"
                           step="0.1"
                           value={formData.travel.vehicleMilesPerMonth}
                           onChange={(e) =>
                             updateTravelData(
                               "vehicleMilesPerMonth",
-                              Number.parseFloat(e.target.value) || 0
+                              e.target.value
                             )
                           }
                         />
@@ -313,6 +324,10 @@ const SecondStep: React.FC<SecondStepProps> = ({
                       Housing Emissions
                     </span>
                     <span className="text-sm font-bold text-orange-600">
+                      {
+                        data?.calculateCarbonFootprint
+                          .housingEmissionsLbsCO2ePerYear
+                      }{" "}
                       lbs CO₂e/year
                     </span>
                   </div>
@@ -321,6 +336,10 @@ const SecondStep: React.FC<SecondStepProps> = ({
                       Travel Emissions
                     </span>
                     <span className="text-sm font-bold text-red-600">
+                      {
+                        data?.calculateCarbonFootprint
+                          .travelEmissionsLbsCO2ePerYear
+                      }{" "}
                       lbs CO₂e/year
                     </span>
                   </div>
@@ -328,6 +347,10 @@ const SecondStep: React.FC<SecondStepProps> = ({
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Total Emissions</span>
                     <span className="font-bold text-lg text-blue-600">
+                      {
+                        data?.calculateCarbonFootprint
+                          .totalEmissionsLbsCO2ePerYear
+                      }{" "}
                       lbs CO₂e/year
                     </span>
                   </div>
@@ -336,35 +359,25 @@ const SecondStep: React.FC<SecondStepProps> = ({
                     <span className="text-sm text-gray-600">
                       US Average Household
                     </span>
-                    <span className="text-sm text-gray-600">lbs CO₂e/year</span>
+                    <span className="text-xs text-gray-600">
+                      {
+                        data?.calculateCarbonFootprint
+                          .usAverageHouseholdLbsCO2ePerYear
+                      }{" "}
+                      lbs CO₂e/year
+                    </span>
                   </div>
+                  <span className="text-xs text-gray-600">
+                    * for a household of {formData.householdSize} people in Zip
+                    Code {formData.zipCode}
+                  </span>
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <div className="text-xs text-gray-600 mb-1">
                       Comparison to US Average
                     </div>
-                    {/* <div
-                      className={`text-sm font-medium ${
-                        emissions.totalEmissionsLbsCO2ePerYear >
-                        emissions.usAverageHouseholdLbsCO2ePerYear
-                          ? "text-red-600"
-                          : "text-green-600"
-                      }`}
-                    >
-                      {emissions.totalEmissionsLbsCO2ePerYear >
-                      emissions.usAverageHouseholdLbsCO2ePerYear
-                        ? `${Math.round(
-                            (emissions.totalEmissionsLbsCO2ePerYear /
-                              emissions.usAverageHouseholdLbsCO2ePerYear -
-                              1) *
-                              100
-                          )}% above average`
-                        : `${Math.round(
-                            (1 -
-                              emissions.totalEmissionsLbsCO2ePerYear /
-                                emissions.usAverageHouseholdLbsCO2ePerYear) *
-                              100
-                          )}% below average`}
-                    </div> */}
+                    <div className={`text-sm font-medium ${comparisonColor}`}>
+                      {comparisonLabel}
+                    </div>
                   </div>
                 </div>
               </CardContent>
