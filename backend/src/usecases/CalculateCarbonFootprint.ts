@@ -20,6 +20,7 @@ import {
 } from "@/lib/utils";
 import { ICalculateCarbonFootprintUseCase } from "@/domain/usecases/CalculateCarbonFootprintUseCase";
 import { TravelMode } from "@/types";
+import { getElectricityFactorForZip } from "@/lib/egrid";
 
 export class CalculateCarbonFootprintUseCase
   implements ICalculateCarbonFootprintUseCase
@@ -58,9 +59,12 @@ export class CalculateCarbonFootprintUseCase
   }
 
   private calculateHousingEmissions(housing: HousingInput): number {
+    const electricityEmissionFactor = getElectricityFactorForZip(
+      housing.zipCode
+    );
+
     const electricity =
-      safeValue(housing.electricityKWhPerMonth) *
-      this.housingFactors.electricity;
+      safeValue(housing.electricityKWhPerMonth) * electricityEmissionFactor;
 
     const naturalGas =
       safeValue(housing.naturalGasThermsPerMonth) *
