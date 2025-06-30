@@ -2,19 +2,19 @@ export interface FormData {
   zipCode: string;
   householdSize: number;
   housing: {
-    electricityKWhPerMonth: number;
-    fuelOilGallonsPerMonth: number;
-    lpgGallonsPerMonth: number;
-    naturalGasThermsPerMonth: number;
-    wasteLbsPerMonth: number;
-    waterGallonsPerMonth: number;
+    electricityKWhPerMonth: string;
+    fuelOilGallonsPerMonth: string;
+    lpgGallonsPerMonth: string;
+    naturalGasThermsPerMonth: string;
+    wasteLbsPerMonth: string;
+    waterGallonsPerMonth: string;
   };
   travel: {
-    busMilesPerMonth: number;
-    flyingMilesPerMonth: number;
-    metroMilesPerMonth: number;
-    railMilesPerMonth: number;
-    taxiMilesPerMonth: number;
-    vehicleMilesPerMonth: number;
+    busMilesPerMonth: string;
+    flyingMilesPerMonth: string;
+    metroMilesPerMonth: string;
+    railMilesPerMonth: string;
+    taxiMilesPerMonth: string;
+    vehicleMilesPerMonth: string;
   };
 }
