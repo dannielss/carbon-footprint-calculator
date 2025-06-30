@@ -1,1 +1,1 @@
-export * from "./CalculateCarbonFootprintUseCase";
+export * from "./UseCases";

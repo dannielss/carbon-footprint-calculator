@@ -2,6 +2,7 @@ import {
   HousingInput,
   TravelInput,
   CarbonEmissionResult,
+  CalculateCarbonFootprintInput,
 } from "@/domain/models";
 import {
   HOUSING_FACTORS,
@@ -17,16 +18,11 @@ import {
   toLbsRounded,
   safeValue,
 } from "@/lib/utils";
-import { CalculateCarbonFootprintUseCase } from "@/domain/usecases";
+import { ICalculateCarbonFootprintUseCase } from "@/domain/usecases/CalculateCarbonFootprintUseCase";
 import { TravelMode } from "@/types";
 
-export interface CalculateCarbonFootprintInput {
-  housing: HousingInput;
-  travel?: TravelInput;
-}
-
-export class CalculateCarbonFootprint
-  implements CalculateCarbonFootprintUseCase
+export class CalculateCarbonFootprintUseCase
+  implements ICalculateCarbonFootprintUseCase
 {
   private readonly housingFactors = HOUSING_FACTORS;
   private readonly travelFactors = TRAVEL_FACTORS;

@@ -1,22 +1,27 @@
-import {
-  CalculateCarbonFootprint,
+import type {
   CalculateCarbonFootprintInput,
-} from "src/usecases";
+  CarbonEmissionResult,
+} from "@/domain/models";
+import type { UseCases } from "@/domain/usecases";
 
-const calculateCarbonFootprintUseCase = new CalculateCarbonFootprint();
+export class Resolvers {
+  constructor(private useCases: UseCases) {}
 
-export const resolvers = {
-  Query: {
-    calculateCarbonFootprint: async (
-      _parent: any,
-      args: CalculateCarbonFootprintInput
-    ) => {
-      const { housing, travel } = args;
-      const result = await calculateCarbonFootprintUseCase.execute({
-        housing,
-        travel,
-      });
-      return result;
-    },
-  },
-};
+  public get resolvers() {
+    return {
+      Query: {
+        calculateCarbonFootprint: async (
+          _parent: any,
+          args: CalculateCarbonFootprintInput
+        ): Promise<CarbonEmissionResult> => {
+          const { housing, travel } = args;
+          const result = await this.useCases.calculateCarbonFootprint.execute({
+            housing,
+            travel,
+          });
+          return result;
+        },
+      },
+    };
+  }
+}
