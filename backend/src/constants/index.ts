@@ -2,20 +2,20 @@ import { TravelMode } from "../types";
 
 export const HOUSING_FACTORS = {
   naturalGas: 5.3, // kg CO2e per therm
-  fuelOil: 10.21, // kg CO2e per litre
-  lpg: 5.74, // kg CO2e per litre
+  fuelOil: 2.68, // kg CO2e per litre
+  lpg: 3.19, // kg CO2e per litre
   waste: 0.43, // kg CO2e per kg
-  water: 0.000298, // kg CO2e per litre
+  water: 0.000298, // kg CO2e per litr
   electricity: 0.453, // kg CO2e per kWh
 };
 
 export const TRAVEL_FACTORS: Record<TravelMode, number> = {
-  vehicle: 0.192,
-  bus: 0.105,
-  metro: 0.09,
-  taxi: 0.23,
-  rail: 0.041,
-  flying: 0.158,
+  vehicle: 0.404, // kg CO2e per mile
+  bus: 0.105, // kg CO2e per mile
+  metro: 0.09, // kg CO2e per mile
+  taxi: 0.404, // kg CO2e per mile
+  rail: 0.041, // kg CO2e per mile
+  flying: 0.24, // kg CO2e per mile
 };
 
 export const UNIT_CONVERSIONS = {
@@ -25,5 +25,5 @@ export const UNIT_CONVERSIONS = {
 };
 
 export const US_AVERAGE_PER_PERSON = 16000; // annual kg CO2e per person
-export const FLYING_RADIATIVE_FORCING = 1.09;
+export const FLYING_RADIATIVE_FORCING = 1.9; // Multiplier for aviation impact
 export const KG_TO_LBS = 2.20462;
