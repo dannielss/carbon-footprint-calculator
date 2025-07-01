@@ -1,15 +1,16 @@
-import { readFileSync } from "node:fs";
 import path from "node:path";
+import http from "http";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
+import express from "express";
+import { readFileSync } from "node:fs";
 import { ApolloServer } from "@apollo/server";
 import { Resolvers } from "./resolvers";
 import { IServer } from "@/domain/interfaces";
-import { useCases } from "@/usecases";
-import express from "express";
-import http from "http";
-import cors from "cors";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { expressMiddleware } from "@as-integrations/express5";
-import rateLimit from "express-rate-limit";
+import { ElectricityFactorRepository } from "@/repositories/electricity-factor-repository";
+import { CalculateCarbonFootprintUseCase } from "@/usecases/calculate-carbon-footprint";
 
 export class ApolloGraphQLServer implements IServer {
   async start(port = 4000): Promise<void> {
@@ -20,6 +21,15 @@ export class ApolloGraphQLServer implements IServer {
       path.join(__dirname, "schema.graphql"),
       "utf-8"
     );
+
+    const electricityRepo = new ElectricityFactorRepository();
+    const calculateCarbonFootprint = new CalculateCarbonFootprintUseCase(
+      electricityRepo
+    );
+
+    const useCases = {
+      calculateCarbonFootprint,
+    };
 
     const resolverInstance = new Resolvers(useCases);
     const resolvers = resolverInstance.resolvers;

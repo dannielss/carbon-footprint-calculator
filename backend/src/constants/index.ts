@@ -1,4 +1,4 @@
-import { TravelMode } from "../types";
+import { TravelMode } from "@/domain/models";
 
 export const HOUSING_FACTORS = {
   naturalGas: 5.3, // kg CO2e per therm

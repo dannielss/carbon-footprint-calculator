@@ -12,7 +12,7 @@ const config: Config.InitialOptions = {
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
     "!src/**/server.ts",
-    "!src/infrastructure/graphql/**",
+    "!src/main/graphql/**",
     "!src/domain/**/*.ts",
   ],
   coverageReporters: ["text", "lcov"],

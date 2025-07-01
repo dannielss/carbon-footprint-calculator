@@ -1,4 +1,4 @@
-import { ApolloGraphQLServer } from "./infrastructure/graphql/server";
+import { ApolloGraphQLServer } from "./main/graphql/server";
 import { loadEgridData } from "./lib/egrid";
 
 async function bootstrap() {

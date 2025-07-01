@@ -18,9 +18,9 @@ import {
   toLbsRounded,
   safeValue,
 } from "@/lib/utils";
-import { ICalculateCarbonFootprintUseCase } from "@/domain/usecases/CalculateCarbonFootprintUseCase";
-import { TravelMode } from "@/types";
-import { getElectricityFactorForZip } from "@/lib/egrid";
+import { ICalculateCarbonFootprintUseCase } from "@/domain/usecases/calculate-carbon-footprint";
+import { TravelMode } from "@/domain/models";
+import { IElectricityFactorRepository } from "@/domain/repositories/electricity-factor-repository";
 
 export class CalculateCarbonFootprintUseCase
   implements ICalculateCarbonFootprintUseCase
@@ -31,6 +31,10 @@ export class CalculateCarbonFootprintUseCase
   private readonly FLYING_RADIATIVE_FORCING = FLYING_RADIATIVE_FORCING;
   private readonly MONTHS_IN_YEAR = 12;
   private readonly MILES_SUFFIX = "MilesPerMonth";
+
+  constructor(
+    private readonly electricityFactorRepository: IElectricityFactorRepository
+  ) {}
 
   async execute(
     input: Readonly<CalculateCarbonFootprintInput>
@@ -59,9 +63,10 @@ export class CalculateCarbonFootprintUseCase
   }
 
   private calculateHousingEmissions(housing: HousingInput): number {
-    const electricityEmissionFactor = getElectricityFactorForZip(
-      housing.zipCode
-    );
+    const electricityEmissionFactor =
+      this.electricityFactorRepository.getElectricityFactorForZip(
+        housing.zipCode
+      );
 
     const electricity =
       safeValue(housing.electricityKWhPerMonth) * electricityEmissionFactor;
