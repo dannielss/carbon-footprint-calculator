@@ -210,6 +210,21 @@ Benefits:
 
 ---
 
+## :camera: Screenshots
+
+<details>
+
+<summary>UI</summary>
+
+
+</details>
+
+<details>
+<summary>Coverage</summary>
+
+
+</details>
+
 ## 📄 License
 
 MIT License
