@@ -216,11 +216,18 @@ Benefits:
 
 <summary>UI</summary>
 
+![Screenshot 2025-06-30 at 22 21 37](https://github.com/user-attachments/assets/89881c55-0b45-4078-a2ac-dcb8b6fee3c6)
+![Screenshot 2025-06-30 at 22 21 37](https://github.com/user-attachments/assets/117a79a1-914b-4267-9191-c7d636230d3a)
+<img src="https://github.com/user-attachments/assets/f3ba5009-4094-49cd-b71f-312fcc0a1c1e" width="500" />
+<img src="https://github.com/user-attachments/assets/27d9962b-71f6-455e-a4a7-ff84d56caf43" width="500" />
 
 </details>
 
 <details>
 <summary>Coverage</summary>
+
+![Screenshot 2025-06-30 at 22 19 57](https://github.com/user-attachments/assets/e7a3fda1-35c3-4ece-a5e3-7e9cba9520b1)
+![Screenshot 2025-06-30 at 22 20 55](https://github.com/user-attachments/assets/2d33866c-41fd-4d1b-88fb-574d69f295e2)
 
 
 </details>
