@@ -6,7 +6,7 @@ This repository contains both a **frontend** and a **backend** project for calcu
 
 ## Backend — Carbon Footprint Calculator API
 
-A **GraphQL API** built with **Node.js**, **TypeScript**, and **Apollo Server**, designed with **Clean Architecture** principles for maintainability, testability, and separation of concerns.
+A **GraphQL API** built with **Node.js**, **ExpressJS**, **TypeScript**, and **Apollo Server**, designed with **Clean Architecture** principles for maintainability, testability, and separation of concerns.
 
 ### Features
 
@@ -217,9 +217,13 @@ Benefits:
 <summary>UI</summary>
 
 ![Screenshot 2025-06-30 at 22 21 37](https://github.com/user-attachments/assets/89881c55-0b45-4078-a2ac-dcb8b6fee3c6)
+
 ![Screenshot 2025-06-30 at 22 21 37](https://github.com/user-attachments/assets/117a79a1-914b-4267-9191-c7d636230d3a)
-<img src="https://github.com/user-attachments/assets/f3ba5009-4094-49cd-b71f-312fcc0a1c1e" width="500" />
-<img src="https://github.com/user-attachments/assets/27d9962b-71f6-455e-a4a7-ff84d56caf43" width="500" />
+
+![Screenshot 2025-07-01 at 02 41 45](https://github.com/user-attachments/assets/0c09cbeb-37f8-4936-8e22-48915530e45a)
+
+<img src="https://github.com/user-attachments/assets/f3ba5009-4094-49cd-b71f-312fcc0a1c1e" width="350" />
+<img src="https://github.com/user-attachments/assets/27d9962b-71f6-455e-a4a7-ff84d56caf43" width="350" />
 
 </details>
 
@@ -227,11 +231,6 @@ Benefits:
 <summary>Coverage</summary>
 
 ![Screenshot 2025-06-30 at 22 19 57](https://github.com/user-attachments/assets/e7a3fda1-35c3-4ece-a5e3-7e9cba9520b1)
-![Screenshot 2025-06-30 at 22 20 55](https://github.com/user-attachments/assets/2d33866c-41fd-4d1b-88fb-574d69f295e2)
-
+![Screenshot 2025-07-01 at 02 43 50](https://github.com/user-attachments/assets/d1754628-9b56-414e-809d-83ac0a9a0ef1)
 
 </details>
-
-## 📄 License
-
-MIT License
