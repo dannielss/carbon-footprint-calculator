@@ -11,7 +11,7 @@ const config: Config.InitialOptions = {
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
-    "!src/**/server.ts",
+    "!src/**/main.ts",
     "!src/main/graphql/**",
     "!src/domain/**/*.ts",
   ],
