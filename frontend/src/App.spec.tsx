@@ -3,10 +3,10 @@ import userEvent from "@testing-library/user-event";
 import App from "./App";
 import { describe, it, expect } from "vitest";
 import { MockedProvider } from "@apollo/client/testing";
-import { CALCULATE_CARBON_FOOTPRINT_MOCK_REQUEST } from "../test/mocks/calculate_carbon_footprint";
-import { CALCULATE_CARBON_FOOTPRINT_MOCK_REQUEST_WITH_ERROR } from "../test/mocks/calculate_carbon_footprint_with_error";
-import { CALCULATE_CARBON_FOOTPRINT_WITH_TRAVEL_DATA_MOCK_REQUEST } from "../test/mocks/calculate_carbon_footprint_with_travel_data";
-import { CALCULATE_CARBON_FOOTPRINT_ABOVE_AVERAGE_MOCK_REQUEST } from "../test/mocks/calculate_carbon_footprint_above_average";
+import { CALCULATE_CARBON_FOOTPRINT_MOCK_REQUEST } from "../test/mocks/calculate-carbon-footprint";
+import { CALCULATE_CARBON_FOOTPRINT_MOCK_REQUEST_WITH_ERROR } from "../test/mocks/calculate-carbon-footprint-with-error";
+import { CALCULATE_CARBON_FOOTPRINT_WITH_TRAVEL_DATA_MOCK_REQUEST } from "../test/mocks/calculate-carbon-footprint-with-travel-data";
+import { CALCULATE_CARBON_FOOTPRINT_ABOVE_AVERAGE_MOCK_REQUEST } from "../test/mocks/calculate-carbon-footprint-above-average";
 
 describe("App flow", () => {
   it("should display summary", async () => {
