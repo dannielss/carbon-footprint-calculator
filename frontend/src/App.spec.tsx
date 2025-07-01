@@ -7,6 +7,7 @@ import { CALCULATE_CARBON_FOOTPRINT_MOCK_REQUEST } from "../test/mocks/calculate
 import { CALCULATE_CARBON_FOOTPRINT_MOCK_REQUEST_WITH_ERROR } from "../test/mocks/calculate-carbon-footprint-with-error";
 import { CALCULATE_CARBON_FOOTPRINT_WITH_TRAVEL_DATA_MOCK_REQUEST } from "../test/mocks/calculate-carbon-footprint-with-travel-data";
 import { CALCULATE_CARBON_FOOTPRINT_ABOVE_AVERAGE_MOCK_REQUEST } from "../test/mocks/calculate-carbon-footprint-above-average";
+import { CALCULATE_CARBON_FOOTPRINT_WITH_RETRY_MOCK_REQUEST } from "../test/mocks/calculate-carbon-footprint-with-retry";
 
 describe("App flow", () => {
   it("should display summary", async () => {
@@ -227,6 +228,38 @@ describe("App flow", () => {
     const button = screen.getByRole("button", { name: "Get Started" });
     await userEvent.click(button);
 
-    expect(await screen.findByText(/error/i)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/Oops! Something went wrong/i)
+    ).toBeInTheDocument();
+  });
+
+  it("should refetch after click on try again button", async () => {
+    render(
+      <MockedProvider
+        mocks={[
+          CALCULATE_CARBON_FOOTPRINT_MOCK_REQUEST_WITH_ERROR,
+          CALCULATE_CARBON_FOOTPRINT_WITH_RETRY_MOCK_REQUEST,
+        ]}
+        addTypename={false}
+      >
+        <App />
+      </MockedProvider>
+    );
+
+    await userEvent.type(screen.getByLabelText(/zip code/i), "2");
+    const householdInput = screen.getByTestId("household-size");
+    await userEvent.type(householdInput, "2");
+    const button = screen.getByRole("button", { name: "Get Started" });
+    await userEvent.click(button);
+
+    const tryAgainButton = await screen.findByRole("button", {
+      name: /try again/i,
+    });
+
+    await userEvent.click(tryAgainButton);
+
+    expect(
+      await screen.findByText(/Enter your monthly usage for each category/i)
+    ).toBeInTheDocument();
   });
 });

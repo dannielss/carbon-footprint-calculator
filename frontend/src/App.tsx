@@ -5,6 +5,7 @@ import type React from "react";
 import { useState } from "react";
 import { FirstStep, SecondStep } from "./components";
 import { useForm } from "./hooks";
+import { FullPageError } from "./components/full-page-error";
 import useData from "./hooks/useData";
 
 export default function App() {
@@ -17,7 +18,7 @@ export default function App() {
     updateTravelData,
     handleClearForm,
   } = useForm();
-  const { data, error } = useData(formData, start);
+  const { data, error, refetch } = useData(formData, start);
 
   const handleBasicInfoSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +29,13 @@ export default function App() {
   };
 
   if (error) {
-    return <div>error...</div>;
+    return (
+      <FullPageError
+        title="Oops! Something went wrong"
+        message="We couldn't process your request. Please try again or go back to the home page."
+        onRetry={() => refetch()}
+      />
+    );
   }
 
   if (step === 1) {

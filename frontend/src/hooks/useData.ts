@@ -19,7 +19,7 @@ export const CALCULATE_CARBON_FOOTPRINT = gql`
 `;
 
 const useData = (formData: FormData, start: boolean) => {
-  const [fetchCarbonFootprint, { error, data }] =
+  const [fetchCarbonFootprint, { error, data, refetch }] =
     useLazyQuery<EmissionsSummary>(CALCULATE_CARBON_FOOTPRINT);
 
   const debouncedFetch = useCallback(
@@ -55,6 +55,7 @@ const useData = (formData: FormData, start: boolean) => {
   return {
     data,
     error,
+    refetch,
   };
 };
 
