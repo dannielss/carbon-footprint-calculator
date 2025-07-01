@@ -3,7 +3,7 @@ import path from "path";
 import { parse } from "csv-parse/sync";
 import { HOUSING_FACTORS } from "@/constants";
 
-const CSV_PATH = path.resolve(__dirname, "../data/egrid3.csv");
+const CSV_PATH = path.resolve(__dirname, "../static/egrid3.csv");
 
 type EgridEntry = {
   zip: string;
